@@ -5,11 +5,17 @@ import ProfileChart from "./components/Profile";
 import Charts from "./components/Charts";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { useDarkMode } from "./hooks/useDarkMode";
 
 import "./styles.scss";
 
 const App = () => {
   const [coinData, setCoinData] = useState([]);
+  const [darkMode, setDarkMode] = useDarkMode();
+  const toggleMode = e => {
+    e.preventDefault();
+    setDarkMode(!darkMode);
+  };
 
   useEffect(() => {
     axios
@@ -21,7 +27,7 @@ const App = () => {
   }, []);
   return (
     <div className="App">
-      <Navbar />
+      <Navbar darkMode={darkMode} toggleMode={toggleMode} />
       <Route exact path="/">
         <Charts coinData={coinData} />
       </Route>

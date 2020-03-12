@@ -1,13 +1,7 @@
 import React from "react";
-import { useDarkMode } from "../hooks/useDarkMode";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const [darkMode, setDarkMode] = useDarkMode(false);
-  const toggleMode = e => {
-    e.preventDefault();
-    setDarkMode(!darkMode);
-  };
+const Navbar = ({ darkMode, toggleMode }) => {
   return (
     <nav className="navbar">
       <Link to="/">
